@@ -27,14 +27,14 @@ public class RestUsersController {
     }
 
     @PostMapping
-    public User newUser(@RequestBody User user) {
-        return userRepository.save(user);
+    public AngularUser newUser(@RequestBody AngularUser user) {
+        return new AngularUser(userRepository.save(user.asUser()));
     }
 
     @PutMapping
-    public User update(@RequestBody User updatedUser) {
+    public AngularUser update(@RequestBody AngularUser updatedUser) {
         User originalUser = userRepository.findById(updatedUser.getId()).get();
         originalUser.setName(updatedUser.getName());
-        return userRepository.save(originalUser);
+        return new AngularUser(userRepository.save(originalUser));
     }
 }
