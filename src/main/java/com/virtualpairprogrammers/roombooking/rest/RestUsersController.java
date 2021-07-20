@@ -23,6 +23,7 @@ public class RestUsersController {
 
     @GetMapping("/{id}")
     public AngularUser getUser(@PathVariable("id") long id) {
+        System.out.println("Got a request for user id "+ id);
         return new AngularUser(userRepository.findById(id).get());
     }
 
